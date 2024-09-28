@@ -1,7 +1,6 @@
 import jobs from '../jobs.json'
 import React from 'react'
 import Job from './Job'
-
 const JobListings = () => {
   // console.log(jobs)
   const recentJobs = jobs.slice(0,3);
