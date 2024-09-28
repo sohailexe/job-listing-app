@@ -10,6 +10,6 @@ const ViewAllJobs = () => {
     >
   </section>
   )
-}
+ }
 
 export default ViewAllJobs
