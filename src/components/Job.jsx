@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { FaMapMarker } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-const Job = ({type, heading, description, salary,location,id}) => {
+const Job = ({type, title, description, salary,location,id}) => {
   const [showFullDescription, setFullDescription]=useState(false)
 
   let shortDescription= description;
@@ -20,7 +20,7 @@ const Job = ({type, heading, description, salary,location,id}) => {
     <div className="p-4">
       <div className="mb-6">
         <div className="text-gray-600 my-2">{type}</div>
-        <h3 className="text-xl font-bold">{heading}</h3>
+        <h3 className="text-xl font-bold">{title}</h3>
       </div>
 
       <div className="mb-5">
