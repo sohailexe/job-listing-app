@@ -16,6 +16,7 @@ const App = () => {
   // utillity functions
   const addJobSubmit = async (newJob) => {
     const res = await fetch("/api/jobs", {
+      method: "POST",
       headers: {
         "Content-type": "application/json",
       },
@@ -23,13 +24,32 @@ const App = () => {
     });
     return;
   };
+  const deleteJob = async (jobId) => {
+    try {
+      const res = await fetch(`/api/jobs/${jobId}`, {
+        method: "DELETE",
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to delete job");
+      }
+
+      console.log(`Job with ID ${jobId} deleted successfully.`);
+    } catch (error) {
+      console.error("Error deleting job:", error);
+    }
+  };
 
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<MainLayout />}>
         <Route index element={<Home />} /> loader={jobLoader}
         <Route path="/jobs" element={<JobsPage />} />
-        <Route path="/jobs/:id" element={<JobPage />} loader={jobLoader} />
+        <Route
+          path="/jobs/:id"
+          element={<JobPage deleteJob={deleteJob} />}
+          loader={jobLoader}
+        />
         <Route
           path="/add-job"
           element={<AddJobPage addJobSubmit={addJobSubmit} />}
